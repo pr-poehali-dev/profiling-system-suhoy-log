@@ -37,9 +37,83 @@ const questions = [
       { value: "individual", label: "Самостоятельная работа" },
     ],
   },
+  {
+    id: 4,
+    question: "Как вы предпочитаете принимать решения?",
+    options: [
+      { value: "logic", label: "На основе логики и фактов" },
+      { value: "intuition", label: "Доверяя интуиции" },
+      { value: "team", label: "Обсуждая с командой" },
+      { value: "experience", label: "Опираясь на опыт" },
+    ],
+  },
+  {
+    id: 5,
+    question: "Что вас мотивирует больше всего?",
+    options: [
+      { value: "money", label: "Высокая зарплата" },
+      { value: "recognition", label: "Признание и уважение" },
+      { value: "growth", label: "Профессиональный рост" },
+      { value: "impact", label: "Польза для общества" },
+    ],
+  },
+  {
+    id: 6,
+    question: "Какой график работы вам подходит?",
+    options: [
+      { value: "standard", label: "Стандартный 9-18" },
+      { value: "flexible", label: "Гибкий график" },
+      { value: "project", label: "Проектная работа" },
+      { value: "shift", label: "Сменный график" },
+    ],
+  },
+  {
+    id: 7,
+    question: "Как вы относитесь к стрессовым ситуациям?",
+    options: [
+      { value: "avoid", label: "Предпочитаю избегать" },
+      { value: "manage", label: "Умею справляться" },
+      { value: "thrive", label: "Работаю лучше под давлением" },
+      { value: "neutral", label: "Отношусь нейтрально" },
+    ],
+  },
+  {
+    id: 8,
+    question: "Какой уровень ответственности вас привлекает?",
+    options: [
+      { value: "low", label: "Минимальная ответственность" },
+      { value: "medium", label: "Средняя ответственность" },
+      { value: "high", label: "Высокая ответственность" },
+      { value: "leadership", label: "Руководящие позиции" },
+    ],
+  },
+  {
+    id: 9,
+    question: "Предпочитаете работать один или в команде?",
+    options: [
+      { value: "alone", label: "Самостоятельно" },
+      { value: "small_team", label: "В небольшой команде" },
+      { value: "large_team", label: "В большом коллективе" },
+      { value: "mixed", label: "Сочетание индивидуальной и командной работы" },
+    ],
+  },
+  {
+    id: 10,
+    question: "Какое образование и развитие важны для вас?",
+    options: [
+      { value: "formal", label: "Формальное образование (вузы, курсы)" },
+      { value: "practical", label: "Практический опыт" },
+      { value: "self_learning", label: "Самообразование" },
+      { value: "mentorship", label: "Наставничество и менторство" },
+    ],
+  },
 ];
 
-const CareerAssessment = () => {
+interface CareerAssessmentProps {
+  onNavigate: (section: string) => void;
+}
+
+const CareerAssessment = ({ onNavigate }: CareerAssessmentProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [isCompleted, setIsCompleted] = useState(false);
@@ -77,7 +151,10 @@ const CareerAssessment = () => {
               <p className="text-gray-600 mb-6">
                 Спасибо за прохождение теста. Ваши результаты обрабатываются...
               </p>
-              <Button className="bg-purple-600 hover:bg-purple-700">
+              <Button
+                className="bg-purple-600 hover:bg-purple-700"
+                onClick={() => onNavigate("results")}
+              >
                 Посмотреть результаты
                 <Icon name="BarChart3" size={20} className="ml-2" />
               </Button>

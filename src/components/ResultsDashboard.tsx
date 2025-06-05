@@ -4,6 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
+interface ResultsDashboardProps {
+  onNavigate: (section: string) => void;
+}
+
 const mockResults = {
   personalityType: "Исследователь",
   topInterests: [
@@ -39,7 +43,7 @@ const mockResults = {
   ],
 };
 
-const ResultsDashboard = () => {
+const ResultsDashboard = ({ onNavigate }: ResultsDashboardProps) => {
   const getMatchColor = (match: number) => {
     if (match >= 85) return "text-green-600 bg-green-50";
     if (match >= 70) return "text-yellow-600 bg-yellow-50";
@@ -138,7 +142,16 @@ const ResultsDashboard = () => {
                     <p className="text-sm text-gray-600 mb-4">
                       {profession.description}
                     </p>
-                    <Button size="sm" variant="outline" className="w-full">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full"
+                      onClick={() =>
+                        alert(
+                          `Подробная информация о профессии "${profession.title}" скоро будет доступна!`,
+                        )
+                      }
+                    >
                       Узнать больше
                     </Button>
                   </div>
@@ -174,11 +187,23 @@ const ResultsDashboard = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg" className="bg-purple-600 hover:bg-purple-700 mr-4">
+          <Button
+            size="lg"
+            className="bg-purple-600 hover:bg-purple-700 mr-4"
+            onClick={() =>
+              alert("Функция скачивания отчета скоро будет доступна!")
+            }
+          >
             <Icon name="Download" size={20} className="mr-2" />
             Скачать отчет
           </Button>
-          <Button size="lg" variant="outline">
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() =>
+              alert("Запись на консультацию скоро будет доступна!")
+            }
+          >
             <Icon name="MessageCircle" size={20} className="mr-2" />
             Консультация специалиста
           </Button>

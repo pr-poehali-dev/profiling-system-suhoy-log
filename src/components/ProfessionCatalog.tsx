@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 
+interface ProfessionCatalogProps {
+  onNavigate: (section: string) => void;
+}
+
 const professions = [
   {
     id: 1,
@@ -86,7 +90,7 @@ const categories = [
   "Техника",
 ];
 
-const ProfessionCatalog = () => {
+const ProfessionCatalog = ({ onNavigate }: ProfessionCatalogProps) => {
   const [selectedCategory, setSelectedCategory] = useState("Все");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -208,7 +212,14 @@ const ProfessionCatalog = () => {
                   </div>
                 </div>
 
-                <Button className="w-full mt-4 bg-purple-600 hover:bg-purple-700">
+                <Button
+                  className="w-full mt-4 bg-purple-600 hover:bg-purple-700"
+                  onClick={() =>
+                    alert(
+                      `Подробная информация о профессии "${profession.title}" скоро будет доступна!`,
+                    )
+                  }
+                >
                   Подробнее
                   <Icon name="ArrowRight" size={16} className="ml-2" />
                 </Button>

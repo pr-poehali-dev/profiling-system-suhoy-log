@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
-const Hero = () => {
+interface HeroProps {
+  onNavigate: (section: string) => void;
+}
+
+const Hero = ({ onNavigate }: HeroProps) => {
   return (
     <section className="bg-gradient-to-br from-purple-500 via-blue-500 to-purple-600 text-white py-20">
       <div className="container mx-auto px-4 text-center">
@@ -58,6 +62,7 @@ const Hero = () => {
         <Button
           size="lg"
           className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-8 py-4 text-lg"
+          onClick={() => onNavigate("assessment")}
         >
           Начать профориентацию
           <Icon name="ArrowRight" size={20} className="ml-2" />
